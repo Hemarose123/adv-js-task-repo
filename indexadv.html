@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Advanced JS Tasks</title>
+</head>
+<body>
+  <h1>JavaScript Tasks Output</h1>
+  <pre id="output"></pre>
+
+  <script>
+    const output = document.getElementById("output");
+
+    function classicSquarer(numbers) {
+      return numbers.map(function (num) {
+        return num ** 2;
+      });
+    }
+    const arrowSquarer = (numbers) => numbers.map(num => num ** 2);
+
+    function combineHeroes(hero1, hero2, hero3) {
+      return { ...hero1, ...hero2, ...hero3 };
+    }
+
+    function scoreFinder(studentList, targetName) {
+      const map = new Map(studentList.map(({ name, score }) => [name, score]));
+      return map.get(targetName);
+    }
+
+    function eliminateClones(numbers) {
+      return [...new Set(numbers)];
+    }
+
+    function onlyLongWords(words) {
+      return words.filter(word => word.length > 5);
+    }
+
+    function multiplyAll(numbers) {
+      return numbers.reduce((total, num) => total * num, 1);
+    }
+
+    function findOccurrences(array, target) {
+      return {
+        firstIndex: array.indexOf(target),
+        lastIndex: array.lastIndexOf(target)
+      };
+    }
+
+    function checkIfArray(variable) {
+      return Array.isArray(variable);
+    }
+
+    function doesContain(sentence, word) {
+      return sentence.includes(word);
+    }
+
+    function displayIndices(items) {
+      let result = "";
+      for (let index of items.keys()) {
+        result += `Index: ${index}\n`;
+      }
+      return result;
+    }
+
+    let resultText = "";
+
+    resultText += "Task 1 - Classic Squarer: " + classicSquarer([1, 2, 3, 4, 5]) + "\n";
+    resultText += "Task 1 - Arrow Squarer: " + arrowSquarer([1, 2, 3, 4, 5]) + "\n\n";
+
+    resultText += "Task 2 - Merged Object: " + JSON.stringify(combineHeroes(
+      { a: 1, b: 2 },
+      { c: 3, d: 4 },
+      { e: 5, f: 6 }
+    )) + "\n\n";
+
+    const students = [
+      { name: "Alice", score: 85 },
+      { name: "Bob", score: 92 },
+      { name: "Charlie", score: 78 }
+    ];
+    resultText += "Task 3 - Bob's Score: " + scoreFinder(students, "Bob") + "\n\n";
+
+    resultText += "Task 4 - Unique Numbers: " + eliminateClones([1, 2, 2, 3, 4, 4, 5]) + "\n\n";
+
+    const wordArray = ['apple', 'banana', 'cherry', 'date', 'elderberry', 'fig', 'grape'];
+    resultText += "Task 5 - Words > 5 letters: " + onlyLongWords(wordArray) + "\n\n";
+
+    resultText += "Task 6 - Product of Array: " + multiplyAll([1, 2, 3, 4, 5]) + "\n\n";
+
+    const nums = [1, 2, 3, 2, 4, 2, 5];
+    resultText += "Task 7 - First & Last Index of 2: " + JSON.stringify(findOccurrences(nums, 2)) + "\n\n";
+
+    resultText += "Task 8 - Is Array ([1,2,3]): " + checkIfArray([1, 2, 3]) + "\n";
+    resultText += "Task 8 - Is Array ('Hello'): " + checkIfArray("Hello") + "\n\n";
+
+    resultText += "Task 9 - Contains 'fox'?: " + doesContain("The quick brown fox jumps over the lazy dog", "fox") + "\n\n";
+
+    resultText += "Task 10 - Array Keys:\n" + displayIndices(['apple', 'banana', 'cherry']);
+
+    output.textContent = resultText;
+  </script>
+</body>
+</html>
